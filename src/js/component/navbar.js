@@ -15,6 +15,11 @@ export const Navbar = () => {
 						/>
 					</span>
 				</Link>
+				<Link to={"/register"}>
+					<span className="btn btn-outline-dark" href="#" role="button">
+						Register
+					</span>
+				</Link>
 
 				<Favorites />
 			</div>

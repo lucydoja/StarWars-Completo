@@ -9,19 +9,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 
 			loadPeople: () => {
-				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/people/")
+				fetch("https://www.swapi.tech/api/people/")
 					.then(res => res.json())
 					.then(data => {
-						setStore({ people: data });
+						let personas = getStore().people;
+						for (let i = 0; i < data.results.length; i++) {
+							fetch(data.results[i].url)
+								.then(res => res.json())
+								.then(dataProp => {
+									personas.push(dataProp.result.properties);
+									setStore({ people: [...personas] });
+								});
+						}
 					})
 					.catch(err => console.error(err));
 			},
 
 			loadPlanets: () => {
-				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/planets/")
+				fetch("https://www.swapi.tech/api/planets/")
 					.then(res => res.json())
 					.then(data => {
-						setStore({ planets: data });
+						let planetas = getStore().planets;
+						for (let i = 0; i < data.results.length; i++) {
+							fetch(data.results[i].url)
+								.then(res => res.json())
+								.then(dataProp => {
+									planetas.push(dataProp.result.properties);
+									setStore({ planets: [...planetas] });
+								});
+						}
 					})
 					.catch(err => console.error(err));
 			},
