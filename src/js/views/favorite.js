@@ -8,7 +8,7 @@ export function Favorites() {
 	let contador = store.favorites.length;
 	if (logged != "true") {
 		return (
-			<div>
+			<div className="d-flex justify-content-end">
 				{" "}
 				<Link to={"/register"}>
 					<span className="btn btn-outline-light mr-2" href="#" role="button">
@@ -24,10 +24,10 @@ export function Favorites() {
 		);
 	} else {
 		return (
-			<div className="dropdown " id="dropdownDiv">
+			<div className="dropdown d-flex justify-content-end" id="dropdownDiv">
 				<Link to={"/"}>
 					<span
-						className="btn btn-outline-light mr-2"
+						className="btn btn-outline-light ml-2 mr-2"
 						onClick={() => {
 							actions.logOut();
 						}}
