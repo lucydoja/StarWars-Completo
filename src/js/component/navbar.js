@@ -4,14 +4,14 @@ import { Favorites } from "../views/favorite";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-expand-lg  mb-3">
-			<div className="container-fluid">
+		<nav className="navbar navbar-expand-lg mb-3">
+			<div className="container-fluid row">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">
+					<span className="navbar-brand mb-0">
 						<img
 							src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/640px-Star_Wars_Logo.svg.png"
 							alt="star wars logo"
-							width="100px"
+							className="logo-nav "
 						/>
 					</span>
 				</Link>

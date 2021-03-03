@@ -25,7 +25,7 @@ const injectContext = PassedComponent => {
 			state.actions.loadPeople();
 			state.actions.loadPlanets();
 			state.actions.logged();
-			if (state.store.isLogged == "true") {
+			if (state.store.isLogged === "true") {
 				state.actions.loadFavorites();
 			}
 

@@ -68,6 +68,14 @@ export function Favorites() {
 						<Link to={"/list"}>
 							<span className="dropdown-item">View list</span>
 						</Link>
+						<span
+							className="btn btn-light d-flex flex-grow-1"
+							role="button"
+							onClick={() => {
+								actions.deleteAll();
+							}}>
+							<span className="ml-2">Delete all</span>
+						</span>
 					</div>
 				</div>
 			</div>

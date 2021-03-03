@@ -4,14 +4,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorites: [],
 			people: [],
 			planets: [],
-			isLogged: ""
+			isLogged: "false"
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 
 			loadPeople: () => {
 				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/people/")
-					.then(res => res.json())
+					.then(response => {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
 					.then(data => {
 						setStore({ people: data });
 					})
@@ -20,7 +25,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			loadPlanets: () => {
 				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/planets/")
-					.then(res => res.json())
+					.then(response => {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
 					.then(data => {
 						setStore({ planets: data });
 					})
@@ -37,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (!response.ok) {
-							response.text().then(text => alert(text));
 							throw Error(response.statusText);
 						}
 						return response.json();
@@ -50,15 +59,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFavorites: variable => {
-				const data = {
+				let data = {
 					fav_name: variable
 				};
 
 				let user_token = sessionStorage.getItem("user_token");
-				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/favorites", {
+				fetch(`https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/favorites/${variable}`, {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json",
 						Authorization: "Bearer " + user_token
 					},
 					body: JSON.stringify(data)
@@ -70,8 +78,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 						return response.json();
 					})
-					.then(data => {
-						setStore({ favorites: data });
+					.then(datos => {
+						setStore({ favorites: datos });
 						console.log("Favorite added");
 					})
 					.catch(error => {
@@ -89,7 +97,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (!response.ok) {
-							response.text().then(text => alert(text));
 							throw Error(response.statusText);
 						}
 						return response.json();
@@ -105,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			deleteAll: () => {
 				let user_token = sessionStorage.getItem("user_token");
-				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/Allfavorites", {
+				fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/favorites", {
 					method: "DELETE",
 					headers: {
 						Authorization: "Bearer " + user_token
@@ -113,7 +120,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (!response.ok) {
-							response.text().then(text => alert(text));
 							throw Error(response.statusText);
 						}
 						return response.json();
@@ -134,7 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logOut: () => {
 				sessionStorage.removeItem("user_token");
-				sessionStorage.setItem("is_logged", "false");
+				sessionStorage.removeItem("is_logged");
 				getActions().logged();
 			}
 		}
