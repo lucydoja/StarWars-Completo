@@ -58,7 +58,7 @@ export function Favorites() {
 									<Link className="d-flex flex-grow-1" to={"/info/" + item}>
 										<span className="dropdown-item">{item}</span>
 									</Link>
-									<i className="fas fa-trash-alt mt-2 mr-2" onClick={() => actions.deleteFav(item)} />
+									<i className="fas fa-trash-alt mt-2 mr-3" onClick={() => actions.deleteFav(item)} />
 								</div>
 							);
 						})

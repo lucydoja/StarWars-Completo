@@ -73,7 +73,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (!response.ok) {
-							response.text().then(text => alert(text));
 							throw Error(response.statusText);
 						}
 						return response.json();
