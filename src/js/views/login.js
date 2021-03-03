@@ -50,7 +50,7 @@ export const Login = () => {
 	};
 
 	return (
-		<div className="contenedor d-flex justify-content-center">
+		<div className="container d-flex justify-content-center">
 			<div className="formulario-login">
 				<h4 className="card-header">Log in</h4>
 				<div className="card-body">
