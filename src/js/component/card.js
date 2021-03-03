@@ -14,6 +14,13 @@ export const Card = props => {
 		}
 	}
 
+	function logged() {
+		let isLogged = store.isLogged;
+		if (isLogged == "true") {
+			return true;
+		}
+	}
+
 	return (
 		<div className="card m-2">
 			<img
@@ -36,28 +43,30 @@ export const Card = props => {
 							Learn more
 						</span>
 					</Link>
-					{store.favorites.length == 0 ? (
-						<i
-							className="far fa-heart fa-2x"
-							onClick={() => {
-								actions.addFavorites(props.nombre);
-							}}
-						/>
-					) : favoritos(props.nombre) ? (
-						<i
-							className="fas fa-heart fa-2x"
-							onClick={() => {
-								actions.deleteFav(props.nombre);
-							}}
-						/>
-					) : (
-						<i
-							className="far fa-heart fa-2x"
-							onClick={() => {
-								actions.addFavorites(props.nombre);
-							}}
-						/>
-					)}
+					{logged() ? (
+						store.favorites.length == 0 ? (
+							<i
+								className="far fa-heart fa-2x"
+								onClick={() => {
+									actions.addFavorites(props.nombre);
+								}}
+							/>
+						) : favoritos(props.nombre) ? (
+							<i
+								className="fas fa-heart fa-2x"
+								onClick={() => {
+									actions.deleteFav(props.nombre);
+								}}
+							/>
+						) : (
+							<i
+								className="far fa-heart fa-2x"
+								onClick={() => {
+									actions.addFavorites(props.nombre);
+								}}
+							/>
+						)
+					) : null}
 				</div>
 			</div>
 		</div>

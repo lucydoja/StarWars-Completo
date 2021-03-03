@@ -3,30 +3,25 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export const Register = () => {
-	const [first_name, setFirst] = useState("");
-	const [last_name, setLast] = useState("");
+export const Login = () => {
 	const [user_name, setUser] = useState("");
-	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [redirect, setRedirect] = useState(false);
+	const { store, actions } = useContext(Context);
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		if (email === "" || password === "" || first_name === "" || last_name === "" || user_name === "") {
+		if (user_name === "" || password === "") {
 			alert("Please fill all the entries");
 		}
 
 		// FETCH
 		const data = {
-			email: email,
 			password: password,
-			first_name: first_name,
-			last_name: last_name,
 			user_name: user_name
 		};
 
-		fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/register", {
+		fetch("https://3000-purple-tick-m9my33f9.ws-us03.gitpod.io/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -43,7 +38,11 @@ export const Register = () => {
 				return response.json();
 			})
 			.then(data => {
-				console.log("New user was registered");
+				sessionStorage.setItem("user_token", data.token);
+				sessionStorage.setItem("is_logged", "true");
+				actions.logged();
+				actions.loadFavorites();
+				console.log("Succesful log in");
 			})
 			.catch(error => {
 				console.error("Error:", error);
@@ -51,9 +50,9 @@ export const Register = () => {
 	};
 
 	return (
-		<div className="container d-flex justify-content-center mb-5">
-			<div className="formulario mb-5">
-				<h4 className="card-header">Register</h4>
+		<div className="contenedor d-flex justify-content-center">
+			<div className="formulario-login">
+				<h4 className="card-header">Log in</h4>
 				<div className="card-body">
 					<form className="needs-validation" onSubmit={e => handleSubmit(e)}>
 						<div className="form-row mt-3">
@@ -70,59 +69,13 @@ export const Register = () => {
 								required
 							/>
 						</div>
-
-						<div className="form-row mt-3">
-							<label>First Name*</label>
-							<input
-								type="text"
-								className="form-control"
-								maxLength="120"
-								onKeyDown={() => {
-									return "/[a-z, ]/i.test(event.key)";
-								}}
-								onChange={e => {
-									setFirst(e.target.value);
-								}}
-								required
-							/>
-							<div className="valid-feedback" />
-						</div>
-						<div className="form-row mt-3">
-							<label>Last Name*</label>
-							<input
-								type="text"
-								className="form-control"
-								maxLength="120"
-								onKeyDown={() => {
-									return "/[a-z, ]/i.test(event.key)";
-								}}
-								onChange={e => {
-									setLast(e.target.value);
-								}}
-								required
-							/>
-							<div className="valid-feedback" />
-						</div>
-						<div className="form-row mt-3">
-							<label>Email*</label>
-							<input
-								type="email"
-								className="form-control"
-								maxLength="120"
-								onChange={e => {
-									setEmail(e.target.value);
-								}}
-								required
-							/>
-							<div className="valid-feedback" />
-						</div>
 						<div className="form-row mt-3">
 							<label>Password*</label>
 							<input
 								type="password"
+								className="form-control"
 								minLength="8"
 								maxLength="120"
-								className="form-control"
 								onChange={e => {
 									setPassword(e.target.value);
 								}}
@@ -136,14 +89,14 @@ export const Register = () => {
 								Cancel
 							</button>
 							<button className="btn btn-primary ml-1" type="submit">
-								Register
+								Log in
 							</button>
 						</div>
 					</form>
 				</div>
 			</div>
 
-			{redirect ? <Redirect to="/login" /> : ""}
+			{redirect ? <Redirect to="/" /> : ""}
 		</div>
 	);
 };
