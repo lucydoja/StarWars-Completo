@@ -12,8 +12,8 @@
 		"deploy": "node deploy-to-github.js"
 	},
 	"author": {
-		"name": "Alejandro Sanchez",
-		"url": "http://alesanchezr.com/"
+		"name": "Lucia Dominguez",
+		"url": "https://github.com/lucydoja"
 	},
 	"contributors": [
 		{
@@ -23,7 +23,11 @@
 		{
 			"name": "Ignacio Cordoba",
 			"url": "http://github.com/nachovz"
-		}
+        },
+        {
+		"name": "Alejandro Sanchez",
+		"url": "http://alesanchezr.com/"
+	}
 	],
 	"license": "ISC",
 	"devDependencies": {
