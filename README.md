@@ -1,6 +1,6 @@
 # Star Wars Blog by Lucía Domínguez
 
-This is a simple Star Wars blog where you will be able to add, delete and review your favorite planets and characters from the Star Wars world.
+This is a Star Wars blog where you will be able to overview planet and character infomation from the Star Wars world. If you register (and log in) to this blog you will be able to add, delete and review your favorite planets and characters.
 
 This project is based primarily on **JavaScript**, using **React** for the client-side, **Flux** and **Context API** to organize the data distribution, **React Router Dom** to handle routing, for styling I implemented **Bootstrap** and **CSS**. The information was originally fetched from the SWAPI (https://www.swapi.tech/), but it is now connected to the back-end, which can be found at (https://github.com/lucydoja/StarWars-API).
 
