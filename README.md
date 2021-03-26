@@ -6,12 +6,11 @@ This project is based primarily on **JavaScript**, using **React** for the clien
 
 
 ### View
-You can view this project in the following  link (https://lucydoja.github.io/Star_Wars-Lucia_Dominguez/) and explore for yourself. 
-
 If you want to run the project over Gitpod your will have to run the following on your command line:
 ```
 $ npm run start
 ```
+This program must be run at the time as https://github.com/lucydoja/StarWars-API for it to be able to make the connections with the server.
 
 ### Features:
 
@@ -21,3 +20,6 @@ $ npm run start
 * Add and delete favorites
 * View a list of your selected favorites
 * Delete all you favorites
+
+### Other: 
+You can view some of the front-end functionalities at the following link (https://lucydoja.github.io/Star_Wars-Lucia_Dominguez/).
